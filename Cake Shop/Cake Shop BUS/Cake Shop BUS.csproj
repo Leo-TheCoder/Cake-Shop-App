@@ -57,7 +57,6 @@
     <Compile Include="BUS_Cake.cs" />
     <Compile Include="BUS_CakeOrder.cs" />
     <Compile Include="BUS_CakeType.cs" />
-    <Compile Include="BUS_OrderDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -108,5 +108,20 @@
       <Name>Cake Shop DTO</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\closeIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\resizeIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\minimizeIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\moreIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\menuIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

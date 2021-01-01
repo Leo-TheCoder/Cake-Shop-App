@@ -58,7 +58,6 @@
     <Compile Include="DAO_Cake.cs" />
     <Compile Include="DAO_CakeOrder.cs" />
     <Compile Include="DAO_CakeType.cs" />
-    <Compile Include="DAO_OrderDetail.cs" />
     <Compile Include="DBConnect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

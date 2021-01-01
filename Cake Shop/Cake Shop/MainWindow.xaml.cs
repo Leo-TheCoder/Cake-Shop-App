@@ -59,5 +59,21 @@ namespace Cake_Shop
                 WindowState = WindowState.Maximized;
             }
         }
+
+        private void CakeListButton_Click(object sender, RoutedEventArgs e)
+        {
+            Grid.SetColumn(ActiveIndicator, 0);
+            //load page
+        }
+
+        private void OrderListButton_Click(object sender, RoutedEventArgs e)
+        {
+            Grid.SetColumn(ActiveIndicator, 1);
+        }
+
+        private void StatisticButton_Click(object sender, RoutedEventArgs e)
+        {
+            Grid.SetColumn(ActiveIndicator, 2);
+        }
     }
 }
