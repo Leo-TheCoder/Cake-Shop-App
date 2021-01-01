@@ -3,10 +3,52 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:Cake_Shop"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        mc:Ignorable="d" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Title="Girval Cake Shop" AllowsTransparency="True"
+        WindowStyle="None" Background="Black"
+        Height="{Binding SystemParameters.PrimaryScreenHeight}" 
+        Width="{Binding SystemParameters.PrimaryScreenWidth}">
+    
     <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="ControlBar" 
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+
+            <Button x:Name="MinimizeWindow"
+                    Width="50"
+                    Height="50"
+                    Content="_"
+                    Style="{StaticResource ButtonPrimary}"
+                    hc:BorderElement.CornerRadius="0"
+                    Click="MinimizeWindow_Click"/>
+
+            <Button x:Name="ResizeWindow"
+                    Width="50"
+                    Height="50"
+                    Content="0"
+                    Style="{StaticResource ButtonPrimary}"
+                    Background="White"
+                    hc:BorderElement.CornerRadius="0"
+                    Click="ResizeWindow_Click"/>
+
+            <Button x:Name="CloseWindow"
+                    Width="50"
+                    Height="50"
+                    Content="X"
+                    Style="{StaticResource ButtonDanger}"
+                    hc:BorderElement.CornerRadius="0"
+                    Click="CloseWindow_Click"/>
+
+        </StackPanel>
         
     </Grid>
 </Window>

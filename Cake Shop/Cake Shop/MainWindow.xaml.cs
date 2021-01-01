@@ -24,5 +24,40 @@ namespace Cake_Shop
         {
             InitializeComponent();
         }
+
+        private void CloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Bạn thực sự muốn thoát?", "Thoát", MessageBoxButton.YesNo);
+
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    {
+                        this.Close();
+                        break;
+                    }
+                default:
+                    {
+                        return;
+                    }
+            }
+        }
+
+        private void MinimizeWindow_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void ResizeWindow_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+            {
+                WindowState = WindowState.Normal;
+            }
+            else
+            {
+                WindowState = WindowState.Maximized;
+            }
+        }
     }
 }
