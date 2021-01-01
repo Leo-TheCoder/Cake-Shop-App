@@ -54,9 +54,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cake.cs" />
-    <Compile Include="CakeType.cs" />
-    <Compile Include="Order.cs" />
+    <Compile Include="DTO_Cake.cs" />
+    <Compile Include="DTO_CakeOrder.cs" />
+    <Compile Include="DTO_CakeType.cs" />
+    <Compile Include="DTO_OrderDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
