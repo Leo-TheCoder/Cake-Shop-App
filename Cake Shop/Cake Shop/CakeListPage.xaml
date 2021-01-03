@@ -28,8 +28,10 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock>Search box here</TextBlock>
-            
+            <TextBox
+                x:Name="SearchBox"
+                TextChanged="Search_TextChanged"/>
+
             <ListView x:Name="CakeListView"
                       Style="{StaticResource ListBoxCustom}"
                       Background="Transparent"

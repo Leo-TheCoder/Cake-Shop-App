@@ -37,5 +37,20 @@ namespace Cake_Shop_DAO
 
             return result;
         }
+
+        public DataTable SearchCakeByName(string cakeName)
+        {
+            DataTable result = new DataTable();
+
+            string query = $"select * from Cake c, CakeType ct where " +
+                $"c.CakeName like N'%{cakeName}%' and " +
+                $"c.CakeTypeID = ct.CakeTypeID";
+
+            SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
+
+            adapter.Fill(result);
+
+            return result;
+        } 
     }
 }

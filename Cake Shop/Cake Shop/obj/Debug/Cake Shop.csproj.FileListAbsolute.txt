@@ -1,0 +1,6 @@
+F:\LapTrinhWindows\Cake-Shop-App\Cake Shop\Cake Shop\bin\Debug\Cake Shop.exe
+F:\LapTrinhWindows\Cake-Shop-App\Cake Shop\Cake Shop\bin\Debug\Cake Shop BUS.dll
+F:\LapTrinhWindows\Cake-Shop-App\Cake Shop\Cake Shop\bin\Debug\Cake Shop DTO.dll
+F:\LapTrinhWindows\Cake-Shop-App\Cake Shop\Cake Shop\bin\Debug\HandyControl.dll
+F:\LapTrinhWindows\Cake-Shop-App\Cake Shop\Cake Shop\bin\Debug\Cake Shop DAO.dll
+F:\LapTrinhWindows\Cake-Shop-App\Cake Shop\Cake Shop\bin\Debug\en\HandyControl.resources.dll
