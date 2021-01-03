@@ -39,7 +39,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="10"
-                              Height="240"
+                              Height="200"
                               Width="200"
                               HorizontalAlignment="Center">
 
@@ -47,11 +47,11 @@
                                 <EventTrigger RoutedEvent="MouseEnter">
                                     <BeginStoryboard>
                                         <Storyboard>
-                                            <ColorAnimation Duration="0:0:0.5"
-                                                                From="Transparent"
-                                                                To="White"
-                                                                Storyboard.TargetProperty="BorderBrush.Color"
-                                                                Storyboard.TargetName="ItemBGBorder"/>
+                                            <DoubleAnimation Duration="0:0:0.3"
+                                                             From="0"
+                                                             To="1"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             Storyboard.TargetName="ItemInfoBorder"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
@@ -59,56 +59,71 @@
                                 <EventTrigger RoutedEvent="MouseLeave">
                                     <BeginStoryboard>
                                         <Storyboard>
-                                            <ColorAnimation Duration="0:0:0.5"
-                                                                From="White"
-                                                                To="Transparent"
-                                                                Storyboard.TargetProperty="BorderBrush.Color"
-                                                                Storyboard.TargetName="ItemBGBorder"/>
+                                            <DoubleAnimation Duration="0:0:0.3"
+                                                             From="1"
+                                                             To="0"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             Storyboard.TargetName="ItemInfoBorder"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
                             </Grid.Triggers>
 
-                            <Canvas Panel.ZIndex="2">
-                                <Border x:Name="ItemInfoBorder"
-                                    Margin="5"
-                                    CornerRadius="100 100 10 10">
-                                    <StackPanel>
-                                        <Border CornerRadius="100"
+                            <Border x:Name="ItemAvatar"
+                                        Margin="5"
+                                        CornerRadius="100"
+                                        Canvas.ZIndex="1">
+                                <Border CornerRadius="100"
                                             Height="190"
                                             Width="190">
-                                            <Border.Background>
-                                                <ImageBrush ImageSource="{Binding CakeAvatar}"
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="{Binding CakeAvatar}"
                                                         RenderOptions.BitmapScalingMode="HighQuality"
                                                         Stretch="UniformToFill"/>
-                                            </Border.Background>
-                                        </Border>
-                                        <TextBlock Text="{Binding CakeName}"/>
-                                        <TextBlock Text="{Binding CakePrice}"/>
-                                    </StackPanel>
-
+                                    </Border.Background>
                                 </Border>
 
-                                <Button x:Name="AddCake"
-                                        Height="40"
-                                        Width="40"
+                            </Border>
+
+                            <Button x:Name="AddCake"
+                                        Height="45"
+                                        Width="45"
+                                        Panel.ZIndex="3"
                                         Style="{StaticResource ButtonSuccess}"
+                                        Background="White"
+                                        Foreground="Black"
                                         Content="+"
-                                        Margin="160 150 0 0"
+                                        Margin="150 140 0 0"
                                         hc:BorderElement.CornerRadius="50"
                                         Click="AddCake_Click"/>
-                            </Canvas>
-                            
-                            
+
                             <Border x:Name="ItemBGBorder"
-                                    Panel.ZIndex="1"
+                                    Width="200"
+                                    Height="200"
                                     CornerRadius="100 100 10 10"
-                                    BorderThickness="2"
-                                    BorderBrush="Transparent">
+                                    Panel.ZIndex="0"
+                                    Background="Black"
+                                    Opacity="0.5"/>
+
+                            <Border x:Name="ItemInfoBorder"
+                                    Width="200"
+                                    Height="200"
+                                    CornerRadius="100"
+                                    Panel.ZIndex="2"
+                                    Opacity="0">
+
                                 <Border.Background>
-                                    <SolidColorBrush Color="{StaticResource SecondaryColorBG}"
-                                                     Opacity="{StaticResource SecondaryOpacity}"/>
+                                    <SolidColorBrush Color="Black"
+                                                     Opacity="0.4"/>
                                 </Border.Background>
+
+                                <StackPanel HorizontalAlignment="Center"
+                                            VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding CakeName}"
+                                               Foreground="white"/>
+                                    <TextBlock Text="{Binding CakePrice}"
+                                               Foreground="white"/>
+                                </StackPanel>
                             </Border>
                         </Grid>
                     </DataTemplate>
@@ -119,6 +134,34 @@
                         <WrapPanel/>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Border x:Name="RootBorder">
+                                        <ContentPresenter/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="RootBorder" Property="BorderThickness" Value="0"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="IsSelected" Value="True"/>
+                                <Setter Property="Background" Value="Transparent" />
+                                
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
             </ListView>
 
             <StackPanel Orientation="Horizontal"
