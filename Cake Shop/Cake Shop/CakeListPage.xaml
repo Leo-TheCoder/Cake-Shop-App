@@ -127,7 +127,7 @@
                             <Border x:Name="ItemBGBorder"
                                     Width="200"
                                     Height="200"
-                                    CornerRadius="100 100 10 10"
+                                    CornerRadius="100 100 10 0"
                                     Panel.ZIndex="0"
                                     Background="Black"
                                     Opacity="0.65"/>
