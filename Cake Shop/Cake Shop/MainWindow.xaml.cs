@@ -63,7 +63,9 @@ namespace Cake_Shop
         private void CakeListButton_Click(object sender, RoutedEventArgs e)
         {
             Grid.SetColumn(ActiveIndicator, 0);
-            //load page
+
+            CakeListPage cakeList = new CakeListPage();
+            MainFrame.Navigate(cakeList);
         }
 
         private void OrderListButton_Click(object sender, RoutedEventArgs e)
@@ -74,6 +76,12 @@ namespace Cake_Shop
         private void StatisticButton_Click(object sender, RoutedEventArgs e)
         {
             Grid.SetColumn(ActiveIndicator, 2);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            CakeListPage cakeList = new CakeListPage();
+            MainFrame.Navigate(cakeList);
         }
     }
 }

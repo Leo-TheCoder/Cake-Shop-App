@@ -11,7 +11,8 @@
         Title="Girval Cake Shop" AllowsTransparency="True"
         WindowStyle="None" Background="Transparent"
         Height="{Binding SystemParameters.PrimaryScreenHeight}" 
-        Width="{Binding SystemParameters.PrimaryScreenWidth}">
+        Width="{Binding SystemParameters.PrimaryScreenWidth}"
+        Loaded="Window_Loaded">
 
     <Window.Resources>
         <Color x:Key="PrimaryColorBG">black</Color>

@@ -10,7 +10,7 @@ namespace Cake_Shop_DTO
     {
         private int _cakeId;
         private string _cakeName;
-        private int _cakeTypeId;
+        private string _cakeType;
         private float _cakePrice;
         private string _cakeAvatar;
 
@@ -18,18 +18,18 @@ namespace Cake_Shop_DTO
         {
         }
 
-        public DTO_Cake(int cakeId, string cakeName, int cakeTypeId, float cakePrice, string cakeAvatar)
+        public DTO_Cake(int cakeId, string cakeName, string cakeType, float cakePrice, string cakeAvatar)
         {
             CakeId = cakeId;
             CakeName = cakeName;
-            CakeTypeId = cakeTypeId;
+            CakeType = cakeType;
             CakePrice = cakePrice;
             CakeAvatar = cakeAvatar;
         }
 
         public int CakeId { get => _cakeId; set => _cakeId = value; }
         public string CakeName { get => _cakeName; set => _cakeName = value; }
-        public int CakeTypeId { get => _cakeTypeId; set => _cakeTypeId = value; }
+        public string CakeType { get => _cakeType; set => _cakeType = value; }
         public float CakePrice { get => _cakePrice; set => _cakePrice = value; }
         public string CakeAvatar { get => _cakeAvatar; set => _cakeAvatar = value; }
 
