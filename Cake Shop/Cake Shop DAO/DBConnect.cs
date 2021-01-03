@@ -11,7 +11,7 @@ namespace Cake_Shop_DAO
 {
     public class DBConnect
     {
-        static string connectionString = ConfigurationManager.ConnectionStrings["WeSplitDBConnectionString"].ConnectionString;
+        static string connectionString = ConfigurationManager.ConnectionStrings["CakeShopDBConnectionString"].ConnectionString;
         protected SqlConnection _conn = new SqlConnection(connectionString);
     }
 }

@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Cake_Shop_DAO;
+using Cake_Shop_DTO;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +24,26 @@ namespace Cake_Shop_BUS
 
                 return _instance;
             }
+        }
+
+        public List<DTO_Cake> GetAllCakes()
+        {
+            List<DTO_Cake> result = new List<DTO_Cake>();
+
+            DataTable data = DAO_Cake.Instance.GetAllCakes();
+
+            foreach (DataRow row in data.Rows)
+            {
+                DTO_Cake cake = new DTO_Cake();
+                cake.CakeId = int.Parse(row["CakeID"].ToString());
+                cake.CakeName = row["CakeName"].ToString();
+                cake.CakeTypeId = int.Parse(row["CakeTypeID"].ToString());
+                cake.CakePrice = float.Parse(row["CakePrice"].ToString());
+                cake.CakeAvatar = row["CakeAvatar"].ToString();
+                result.Add(cake);
+            }
+
+            return result;
         }
     }
 }
