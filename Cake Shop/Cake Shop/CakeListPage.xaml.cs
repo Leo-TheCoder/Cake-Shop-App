@@ -23,6 +23,9 @@ namespace Cake_Shop
     /// </summary>
     public partial class CakeListPage : Page
     {
+
+        private List<DTO_Cake> listAllCake;
+        private ObservableCollection<DTO_Cake> cakeList;
         public CakeListPage()
         {
             InitializeComponent();
@@ -30,7 +33,8 @@ namespace Cake_Shop
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            ObservableCollection<DTO_Cake> cakeList = new ObservableCollection<DTO_Cake>(BUS_Cake.Instance.GetAllCakes());
+            listAllCake = BUS_Cake.Instance.GetAllCakes();
+            cakeList = new ObservableCollection<DTO_Cake>(listAllCake);
 
             CakeListView.ItemsSource = cakeList;
         }
@@ -40,6 +44,22 @@ namespace Cake_Shop
             DTO_Cake cake = (DTO_Cake)CakeListView.SelectedItem;
 
             MessageBox.Show($"{cake.CakeName}");
+        }
+
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            String searching = SearchBox.Text;
+            List<DTO_Cake> searchCakeByName = BUS_Cake.Instance.GetSearchCakeByName(searching.Trim());
+            if(searchCakeByName.Count > 0)
+            {
+                ObservableCollection<DTO_Cake> searchList = new ObservableCollection<DTO_Cake>(searchCakeByName);
+                CakeListView.ItemsSource = searchList;
+            }
+            else
+            {
+                CakeListView.ItemsSource = cakeList;
+            }
+            
         }
     }
 }
