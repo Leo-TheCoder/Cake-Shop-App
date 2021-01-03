@@ -34,5 +34,12 @@ namespace Cake_Shop
 
             CakeListView.ItemsSource = cakeList;
         }
+
+        private void AddCake_Click(object sender, RoutedEventArgs e)
+        {
+            DTO_Cake cake = (DTO_Cake)CakeListView.SelectedItem;
+
+            MessageBox.Show($"{cake.CakeName}");
+        }
     }
 }

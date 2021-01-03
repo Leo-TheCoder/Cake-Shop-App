@@ -5,38 +5,131 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Cake_Shop"
       xmlns:hc="https://handyorg.github.io/handycontrol"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CakeListPage" Loaded="Page_Loaded">
 
+    <Page.Resources>
+        <Color x:Key="PrimaryColorBG">black</Color>
+        <Color x:Key="SecondaryColorBG">white</Color>
+
+        <SolidColorBrush x:Key="SecondaryColorBGBrush">white</SolidColorBrush>
+
+        <System:Double x:Key="MainOpacity">0.9</System:Double>
+        <System:Double x:Key="SecondaryOpacity">0.15</System:Double>
+    </Page.Resources>
+
     <Border Padding="3">
         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
+            <TextBlock>Search box here</TextBlock>
+            
             <ListView x:Name="CakeListView"
                       Style="{StaticResource ListBoxCustom}"
                       Background="Transparent"
-                      BorderThickness="0">
+                      BorderThickness="0"
+                      Grid.Row="1">
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Border x:Name="ItemInfoBorder"
-                                    BorderThickness="1" 
-                                    Margin="10"
-                                    Height="200"
-                                    Width="200"
-                                    Background="White">
-                                <StackPanel>
-                                    <TextBlock Text="{Binding CakeName}"/>
-                                </StackPanel>
+                        <Grid Margin="10"
+                              Height="240"
+                              Width="200"
+                              HorizontalAlignment="Center">
+
+                            <Grid.Triggers>
+                                <EventTrigger RoutedEvent="MouseEnter">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0:0:0.5"
+                                                                From="Transparent"
+                                                                To="White"
+                                                                Storyboard.TargetProperty="BorderBrush.Color"
+                                                                Storyboard.TargetName="ItemBGBorder"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+
+                                <EventTrigger RoutedEvent="MouseLeave">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0:0:0.5"
+                                                                From="White"
+                                                                To="Transparent"
+                                                                Storyboard.TargetProperty="BorderBrush.Color"
+                                                                Storyboard.TargetName="ItemBGBorder"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Grid.Triggers>
+
+                            <Canvas Panel.ZIndex="2">
+                                <Border x:Name="ItemInfoBorder"
+                                    Margin="5"
+                                    CornerRadius="100 100 10 10">
+                                    <StackPanel>
+                                        <Border CornerRadius="100"
+                                            Height="190"
+                                            Width="190">
+                                            <Border.Background>
+                                                <ImageBrush ImageSource="{Binding CakeAvatar}"
+                                                        RenderOptions.BitmapScalingMode="HighQuality"
+                                                        Stretch="UniformToFill"/>
+                                            </Border.Background>
+                                        </Border>
+                                        <TextBlock Text="{Binding CakeName}"/>
+                                        <TextBlock Text="{Binding CakePrice}"/>
+                                    </StackPanel>
+
+                                </Border>
+
+                                <Button x:Name="AddCake"
+                                        Height="40"
+                                        Width="40"
+                                        Style="{StaticResource ButtonSuccess}"
+                                        Content="+"
+                                        Margin="160 150 0 0"
+                                        hc:BorderElement.CornerRadius="50"
+                                        Click="AddCake_Click"/>
+                            </Canvas>
+                            
+                            
+                            <Border x:Name="ItemBGBorder"
+                                    Panel.ZIndex="1"
+                                    CornerRadius="100 100 10 10"
+                                    BorderThickness="2"
+                                    BorderBrush="Transparent">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{StaticResource SecondaryColorBG}"
+                                                     Opacity="{StaticResource SecondaryOpacity}"/>
+                                </Border.Background>
                             </Border>
-                            <Border x:Name="ItemBGBorder"></Border>
                         </Grid>
-                        
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                
+
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
             </ListView>
+
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="2"
+                        HorizontalAlignment="Right">
+                <Button x:Name="WatchBasket"
+                        Content="Xem đơn hiện tại"/>
+                <TextBlock Text=" "/>
+                <Button x:Name="CreateOrder"
+                        Content="Tạo đơn hàng"/>
+            </StackPanel>
         </Grid>
         
     </Border>
