@@ -37,7 +37,7 @@ namespace Cake_Shop_BUS
                 DTO_Cake cake = new DTO_Cake();
                 cake.CakeId = int.Parse(row["CakeID"].ToString());
                 cake.CakeName = row["CakeName"].ToString();
-                cake.CakeTypeId = int.Parse(row["CakeTypeID"].ToString());
+                cake.CakeType = row["CakeType"].ToString();
                 cake.CakePrice = float.Parse(row["CakePrice"].ToString());
                 cake.CakeAvatar = row["CakeAvatar"].ToString();
                 result.Add(cake);

@@ -42,10 +42,13 @@ namespace Cake_Shop_DAO
             return data;
         }
 
-        public DataTable GetOrderDetail(int orderId)
+        public DataTable GetOrderDetails(int orderId)
         {
             DataTable data = new DataTable();
-            string query = $"select * from OrderDetail where OrderID = {orderId}";
+
+
+            string query = "select OrderDetail.CakeID, OrderDetail.CakeAmount, Cake.CakeName, Cake.CakePrice, Cake.CakePrice * OrderDetail.CakeAmount as Total from OrderDetail, Cake"
+                + $" where OrderDetail.OrderID={orderId} and OrderDetail.CakeID = Cake.CakeID";
 
             SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
             adapter.Fill(data);
