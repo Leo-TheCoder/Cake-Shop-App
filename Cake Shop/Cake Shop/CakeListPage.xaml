@@ -18,6 +18,15 @@
 
         <System:Double x:Key="MainOpacity">0.9</System:Double>
         <System:Double x:Key="SecondaryOpacity">0.15</System:Double>
+
+        <Style x:Key="TitleStyle"
+               TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        
     </Page.Resources>
 
     <Border Padding="3">
@@ -86,24 +95,42 @@
                             </Border>
 
                             <Button x:Name="AddCake"
-                                        Height="45"
-                                        Width="45"
-                                        Panel.ZIndex="3"
-                                        Style="{StaticResource ButtonSuccess}"
-                                        Background="White"
-                                        Foreground="Black"
-                                        Content="+"
-                                        Margin="150 140 0 0"
-                                        hc:BorderElement.CornerRadius="50"
-                                        Click="AddCake_Click"/>
+                                    Height="45"
+                                    Width="45"
+                                    Panel.ZIndex="3"
+                                    Style="{StaticResource ButtonSuccess}"
+                                    Background="White"
+                                    Foreground="Black"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    Content="+"
+                                    Margin="150 140 0 0"
+                                    hc:BorderElement.CornerRadius="50"
+                                    Click="AddCake_Click"/>
 
+                            <Border x:Name="PriceBorder"
+                                    Background="White"
+                                    BorderBrush="White"
+                                    BorderThickness="1"
+                                    Padding="10 5 10 5"
+                                    Panel.ZIndex="4"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Margin="-5 140 0 0"
+                                    CornerRadius="0 15 15 0">
+                                <TextBlock Text="{Binding CakePrice}"
+                                           Foreground="Black"
+                                           FontSize="15"
+                                           FontWeight="DemiBold"/>
+                            </Border>
+                            
                             <Border x:Name="ItemBGBorder"
                                     Width="200"
                                     Height="200"
                                     CornerRadius="100 100 10 10"
                                     Panel.ZIndex="0"
                                     Background="Black"
-                                    Opacity="0.5"/>
+                                    Opacity="0.65"/>
 
                             <Border x:Name="ItemInfoBorder"
                                     Width="200"
@@ -120,9 +147,8 @@
                                 <StackPanel HorizontalAlignment="Center"
                                             VerticalAlignment="Center">
                                     <TextBlock Text="{Binding CakeName}"
-                                               Foreground="white"/>
-                                    <TextBlock Text="{Binding CakePrice}"
-                                               Foreground="white"/>
+                                               Foreground="white"
+                                               Style="{StaticResource TitleStyle}"/>
                                 </StackPanel>
                             </Border>
                         </Grid>
