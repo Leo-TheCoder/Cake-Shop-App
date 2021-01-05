@@ -57,6 +57,7 @@
     <Compile Include="DTO_Cake.cs" />
     <Compile Include="DTO_CakeOrder.cs" />
     <Compile Include="DTO_CakeType.cs" />
+    <Compile Include="DTO_CakeType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
