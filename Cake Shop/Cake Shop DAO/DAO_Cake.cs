@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Cake_Shop_DAO
 {
@@ -24,15 +24,33 @@ namespace Cake_Shop_DAO
                 return _instance;
             }
         }
+
         public DataTable GetAllCakes()
         {
-            DataTable data = new DataTable();
-            string query = $"select * from Cake";
+            DataTable result = new DataTable();
+
+            string query = "select * from Cake, CakeType where Cake.CakeTypeID = CakeType.CakeTypeID";
 
             SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
-            adapter.Fill(data);
 
-            return data;
+            adapter.Fill(result);
+
+            return result;
         }
+
+        public DataTable SearchCakeByName(string cakeName)
+        {
+            DataTable result = new DataTable();
+
+            string query = $"select * from Cake c, CakeType ct where " +
+                $"c.CakeName like N'%{cakeName}%' and " +
+                $"c.CakeTypeID = ct.CakeTypeID";
+
+            SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
+
+            adapter.Fill(result);
+
+            return result;
+        } 
     }
 }

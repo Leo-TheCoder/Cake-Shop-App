@@ -10,7 +10,6 @@ namespace Cake_Shop_DTO
     {
         private int _orderId;
         private DateTime _orderDate;
-        private List<Tuple<DTO_Cake, int, float>> _orderCakeList;
 
         public DTO_CakeOrder()
         {
@@ -24,6 +23,5 @@ namespace Cake_Shop_DTO
 
         public int OrderId { get => _orderId; set => _orderId = value; }
         public DateTime OrderDate { get => _orderDate; set => _orderDate = value; }
-        public List<Tuple<DTO_Cake, int, float>> OrderCakeList { get => _orderCakeList; set => _orderCakeList = value; }
     }
 }
