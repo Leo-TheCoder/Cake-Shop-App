@@ -71,6 +71,9 @@ namespace Cake_Shop
         private void OrderListButton_Click(object sender, RoutedEventArgs e)
         {
             Grid.SetColumn(ActiveIndicator, 1);
+
+            ViewOrderPage viewOrder = new ViewOrderPage();
+            MainFrame.Navigate(viewOrder);
         }
 
         private void StatisticButton_Click(object sender, RoutedEventArgs e)

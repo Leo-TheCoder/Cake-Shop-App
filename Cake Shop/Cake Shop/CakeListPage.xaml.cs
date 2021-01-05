@@ -25,7 +25,9 @@ namespace Cake_Shop
     {
 
         private List<DTO_Cake> listAllCake;
-        private List<DTO_Cake> basket;
+
+        public static List<Tuple<int, int>> basket = new List<Tuple<int, int>>();
+
         private ObservableCollection<DTO_Cake> cakeList;
         public CakeListPage()
         {
@@ -44,7 +46,17 @@ namespace Cake_Shop
         {
             DTO_Cake cake = (DTO_Cake)CakeListView.SelectedItem;
 
-            MessageBox.Show($"{cake.CakeName}");
+            //MessageBox.Show($"{cake.CakeName}");
+            SetCakeAmountWindow setAmount = new SetCakeAmountWindow(cake.CakeId);
+            setAmount.eventPassCakeToMain += SetAmount_eventPassCakeToMain;
+            setAmount.ShowDialog();
+
+        }
+
+        private void SetAmount_eventPassCakeToMain(int id, int amount)
+        {
+            Tuple<int, int> toAdd = new Tuple<int, int>(id, amount);
+            basket.Add(toAdd);
         }
 
         private void Search_TextChanged(object sender, TextChangedEventArgs e)

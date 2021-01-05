@@ -63,7 +63,9 @@
                          TextChanged="Search_TextChanged"
                          VerticalAlignment="Center"
                          Grid.Column="2"
-                         hc:BorderElement.CornerRadius="10"/>
+                         hc:BorderElement.CornerRadius="10"
+                         hc:InfoElement.Placeholder="Nhập tên bánh..."
+                         Style="{StaticResource TextBoxExtend}"/>
             </Grid>
             
 
@@ -225,10 +227,12 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom">
                 <Button x:Name="WatchBasket"
-                        Content="Xem đơn hiện tại"/>
+                        Content="Xem đơn hiện tại"
+                        hc:BorderElement.CornerRadius="10"/>
                 <TextBlock Text=" "/>
                 <Button x:Name="CreateOrder"
-                        Content="Tạo đơn hàng"/>
+                        Content="Tạo đơn hàng"
+                        hc:BorderElement.CornerRadius="10"/>
             </StackPanel>
         </Grid>
         
