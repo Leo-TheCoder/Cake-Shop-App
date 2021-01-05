@@ -25,6 +25,7 @@ namespace Cake_Shop
     {
 
         private List<DTO_Cake> listAllCake;
+        private List<DTO_Cake> basket;
         private ObservableCollection<DTO_Cake> cakeList;
         public CakeListPage()
         {
