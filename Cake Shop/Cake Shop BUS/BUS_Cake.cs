@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Cake_Shop_DAO;
+using Cake_Shop_DTO;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data;
-using Cake_Shop_DAO;
-using Cake_Shop_DTO;
 
 namespace Cake_Shop_BUS
 {
@@ -29,40 +29,18 @@ namespace Cake_Shop_BUS
         public List<DTO_Cake> GetAllCakes()
         {
             List<DTO_Cake> result = new List<DTO_Cake>();
+
             DataTable data = DAO_Cake.Instance.GetAllCakes();
-
-            foreach(DataRow row in data.Rows)
-            {
-                DTO_Cake tmpCake = new DTO_Cake();
-
-                tmpCake.CakeId = int.Parse(row["CakeID"].ToString());
-                tmpCake.CakeName = row["CakeName"].ToString();
-                tmpCake.CakePrice = float.Parse(row["CakePrice"].ToString());
-                tmpCake.CakeType = row["CakeTypeName"].ToString();
-                tmpCake.CakeAvatar = row["CakeAvatar"].ToString();
-
-                result.Add(tmpCake);
-            }
-
-            return result;
-        }
-
-        public List<DTO_Cake> GetSearchCakeByName(string nameCake)
-        {
-            List<DTO_Cake> result = new List<DTO_Cake>();
-            DataTable data = DAO_Cake.Instance.SearchCakeByName(nameCake);
 
             foreach (DataRow row in data.Rows)
             {
-                DTO_Cake tmpCake = new DTO_Cake();
-
-                tmpCake.CakeId = int.Parse(row["CakeID"].ToString());
-                tmpCake.CakeName = row["CakeName"].ToString();
-                tmpCake.CakePrice = float.Parse(row["CakePrice"].ToString());
-                tmpCake.CakeType = row["CakeTypeName"].ToString();
-                tmpCake.CakeAvatar = row["CakeAvatar"].ToString();
-
-                result.Add(tmpCake);
+                DTO_Cake cake = new DTO_Cake();
+                cake.CakeId = int.Parse(row["CakeID"].ToString());
+                cake.CakeName = row["CakeName"].ToString();
+                cake.CakeType = row["CakeType"].ToString();
+                cake.CakePrice = float.Parse(row["CakePrice"].ToString());
+                cake.CakeAvatar = row["CakeAvatar"].ToString();
+                result.Add(cake);
             }
 
             return result;
