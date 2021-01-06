@@ -9,10 +9,17 @@
         Title="CakeDetailWindow" Height="400" Width="500"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
-        Background="White" Loaded="Window_Loaded">
+        Background="Transparent" Loaded="Window_Loaded"
+        ShowInTaskbar="False">
 
-    <Border BorderBrush="Black"
-            BorderThickness="1.5">
+    <Border BorderThickness="0">
+
+        <Border.Background>
+            <SolidColorBrush Color="White"
+                             Opacity="0.7"/>
+
+        </Border.Background>
+        
         <Grid>
 
             <Grid.ColumnDefinitions>

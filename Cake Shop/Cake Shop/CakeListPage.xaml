@@ -276,9 +276,27 @@
                         Grid.Column="1"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom">
-                <Button x:Name="WatchBasket"
+                <Grid>
+                    <Border x:Name="AmountBorder" 
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Height="20"
+                        Width="20"
+                        Margin="-110 -25 0 0"
+                        Background="Red"
+                        CornerRadius="50"
+                        Panel.ZIndex="2"
+                        Visibility="Collapsed">
+                        <TextBlock x:Name="Amount"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="8"/>
+                    </Border>
+                    <Button x:Name="WatchBasket"
                         Content="Xem đơn hiện tại"
-                        hc:BorderElement.CornerRadius="10"/>
+                        hc:BorderElement.CornerRadius="10" Click="WatchBasket_Click"/>
+                </Grid>
                 <TextBlock Text=" "/>
                 <Button x:Name="CreateOrder"
                         Content="Tạo đơn hàng"

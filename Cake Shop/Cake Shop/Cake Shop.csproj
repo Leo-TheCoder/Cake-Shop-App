@@ -61,6 +61,9 @@
     <Compile Include="CakeDetailWindow.xaml.cs">
       <DependentUpon>CakeDetailWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OrderReviewWindow.xaml.cs">
+      <DependentUpon>OrderReviewWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SetCakeAmountWindow.xaml.cs">
       <DependentUpon>SetCakeAmountWindow.xaml</DependentUpon>
     </Compile>
@@ -91,6 +94,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="OrderListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrderReviewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

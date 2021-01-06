@@ -61,5 +61,10 @@ namespace Cake_Shop
                 //do nothing tại có nhập gì đâu
             }
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            AmountTextBox.Focus();
+        }
     }
 }

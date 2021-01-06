@@ -10,10 +10,16 @@
         Height="150" Width="300" 
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
-        Background="White">
+        Background="Transparent" Loaded="Window_Loaded">
 
-    <Border BorderBrush="Black"
-            BorderThickness="1.5">
+    <Border BorderThickness="0">
+
+        <Border.Background>
+            <SolidColorBrush Color="White"
+                             Opacity="0.7"/>
+
+        </Border.Background>
+
         <Grid>
 
             <Grid.ColumnDefinitions>
@@ -37,7 +43,8 @@
                         Grid.Row="1"
                         Grid.Column="1"
                         TextType="Int"
-                        IsError="True"/>
+                        IsError="True"
+                        />
 
             <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center"

@@ -55,8 +55,23 @@ namespace Cake_Shop
 
         private void SetAmount_eventPassCakeToMain(int id, int amount)
         {
+            Tuple<int, int> item = new Tuple<int, int>(id, amount);
+
+            foreach (Tuple<int, int> part in basket)
+            {
+                if (part.Item1 == item.Item1)
+                {
+                    amount += part.Item2;
+                    basket.Remove(part);
+                    break;
+                }
+            }
+
             Tuple<int, int> toAdd = new Tuple<int, int>(id, amount);
             basket.Add(toAdd);
+
+            AmountBorder.Visibility = Visibility.Visible;
+            Amount.Text = basket.Count().ToString();
         }
 
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
@@ -82,6 +97,15 @@ namespace Cake_Shop
             //MessageBox.Show($"{cake.CakeName}");
             CakeDetailWindow cakeDetail = new CakeDetailWindow(cake.CakeId);
             cakeDetail.ShowDialog();
+        }
+
+        private void WatchBasket_Click(object sender, RoutedEventArgs e)
+        {
+            if(basket.Count > 0)
+            {
+                OrderReviewWindow review = new OrderReviewWindow(basket);
+                review.ShowDialog();
+            }
         }
     }
 }
