@@ -51,6 +51,18 @@ namespace Cake_Shop_DAO
             adapter.Fill(result);
 
             return result;
-        } 
+        }
+
+        public DataTable GetCakeByID(int cakeID)
+        {
+            DataTable result = new DataTable();
+
+            string query = $"select * from Cake c, CakeType ct where c.CakeID = {cakeID}";
+
+            SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
+            adapter.Fill(result);
+
+            return result;
+        }
     }
 }

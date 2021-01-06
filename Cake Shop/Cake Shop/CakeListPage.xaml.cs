@@ -74,5 +74,14 @@ namespace Cake_Shop
             }
             
         }
+
+        private void ShowCakeDetail(object sender, MouseButtonEventArgs e)
+        {
+            DTO_Cake cake = (DTO_Cake)CakeListView.SelectedItem;
+
+            //MessageBox.Show($"{cake.CakeName}");
+            CakeDetailWindow cakeDetail = new CakeDetailWindow(cake.CakeId);
+            cakeDetail.ShowDialog();
+        }
     }
 }

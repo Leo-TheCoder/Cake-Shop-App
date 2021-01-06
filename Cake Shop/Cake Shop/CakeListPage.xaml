@@ -137,7 +137,55 @@
                                     Content="+"
                                     Margin="150 140 0 0"
                                     hc:BorderElement.CornerRadius="50"
-                                    Click="AddCake_Click"/>
+                                    Click="AddCake_Click"
+                                    Cursor="Hand">
+                                
+                                <Button.Triggers>
+                                    <EventTrigger RoutedEvent="MouseEnter">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Duration="0:0:0.3"
+                                                                From="Black"
+                                                                To="White"
+                                                                Storyboard.TargetProperty="BorderBrush.Color"
+                                                                Storyboard.TargetName="AddCake"/>
+                                                <ColorAnimation Duration="0:0:0.3"
+                                                                From="White"
+                                                                To="Black"
+                                                                Storyboard.TargetProperty="Background.Color"
+                                                                Storyboard.TargetName="AddCake"/>
+                                                <ColorAnimation Duration="0:0:0.3"
+                                                                From="Black"
+                                                                To="White"
+                                                                Storyboard.TargetProperty="Foreground.Color"
+                                                                Storyboard.TargetName="AddCake"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+
+                                    <EventTrigger RoutedEvent="MouseLeave">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Duration="0:0:0.3"
+                                                                From="White"
+                                                                To="Black"
+                                                                Storyboard.TargetProperty="BorderBrush.Color"
+                                                                Storyboard.TargetName="AddCake"/>
+                                                <ColorAnimation Duration="0:0:0.3"
+                                                                From="Black"
+                                                                To="White"
+                                                                Storyboard.TargetProperty="Background.Color"
+                                                                Storyboard.TargetName="AddCake"/>
+                                                <ColorAnimation Duration="0:0:0.3"
+                                                                From="White"
+                                                                To="Black"
+                                                                Storyboard.TargetProperty="Foreground.Color"
+                                                                Storyboard.TargetName="AddCake"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Button.Triggers>
+                            </Button>
 
                             <Border x:Name="PriceBorder"
                                     Background="White"
@@ -168,7 +216,9 @@
                                     Height="200"
                                     CornerRadius="100"
                                     Panel.ZIndex="2"
-                                    Opacity="0">
+                                    Opacity="0"
+                                    PreviewMouseDown="ShowCakeDetail"
+                                    Cursor="Hand">
 
                                 <Border.Background>
                                     <SolidColorBrush Color="Black"

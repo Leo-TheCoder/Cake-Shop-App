@@ -6,7 +6,9 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:Cake_Shop"
         mc:Ignorable="d"
-        Title="Chọn số lượng" Height="150" Width="300" AllowsTransparency="True"
+        Title="Chọn số lượng" 
+        Height="150" Width="300" 
+        AllowsTransparency="True"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         Background="White">
 

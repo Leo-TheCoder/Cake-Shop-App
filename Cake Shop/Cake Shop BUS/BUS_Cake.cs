@@ -47,6 +47,22 @@ namespace Cake_Shop_BUS
             return result;
         }
 
+        public DTO_Cake GetCakeByID(int cakeID)
+        {
+            DTO_Cake result = new DTO_Cake();
+            DataTable data = DAO_Cake.Instance.GetCakeByID(cakeID);
+            DataRow row = data.Rows[0];
+
+            
+            result.CakeId = int.Parse(row["CakeID"].ToString());
+            result.CakeName = row["CakeName"].ToString();
+            result.CakePrice = float.Parse(row["CakePrice"].ToString());
+            result.CakeType = row["CakeTypeName"].ToString();
+            result.CakeAvatar = row["CakeAvatar"].ToString();
+
+            return result;
+        }
+
         public List<DTO_Cake> GetSearchCakeByName(string nameCake)
         {
             List<DTO_Cake> result = new List<DTO_Cake>();
