@@ -81,9 +81,9 @@ namespace Cake_Shop_BUS
             return result;
         }
 
-        public void AddOrderDetail(int orderId, int cakeId, int amount)
+        public void AddOrderDetail(int orderId, int cakeId, int amount, double price)
         {
-            DAO_CakeOrder.Instance.AddOrderDetail(orderId, cakeId, amount);
+            DAO_CakeOrder.Instance.AddOrderDetail(orderId, cakeId, amount, price);
         }
 
         public void AddOrder(int id)

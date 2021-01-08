@@ -23,8 +23,13 @@ namespace Cake_Shop
     {
         private List<Tuple<int, int>> basket;
         private List<Tuple<DTO_Cake, int, double>> order = new List<Tuple<DTO_Cake, int, double>>();
+        private double total = 0;
+
         public delegate void PassCakeToRemove(int id);
         public event PassCakeToRemove eventPassCakeToRemove;
+
+        public delegate void ClearBasket();
+        public event ClearBasket eventClearBasket;
 
         public OrderReviewWindow()
         {
@@ -48,11 +53,13 @@ namespace Cake_Shop
             {
                 DTO_Cake tmpCake = BUS_Cake.Instance.GetCakeByID(item.Item1);
                 Tuple<DTO_Cake, int, double> tmpTuple = new Tuple<DTO_Cake, int, double>(tmpCake, item.Item2, tmpCake.CakePrice*item.Item2);
+                total += tmpTuple.Item3;
 
                 order.Add(tmpTuple);
             }
 
             OrderDetail.ItemsSource = order;
+            TotalTextBlock.Text = total.ToString();
         }
 
         private void Order_Click(object sender, RoutedEventArgs e)
@@ -62,8 +69,10 @@ namespace Cake_Shop
 
             foreach (var item in order)
             {
-                BUS_CakeOrder.Instance.AddOrderDetail(id, item.Item1.CakeId, item.Item2);
+                BUS_CakeOrder.Instance.AddOrderDetail(id, item.Item1.CakeId, item.Item2, item.Item1.CakePrice);
             }
+            order.Clear();
+            eventClearBasket();
             this.Close();
         }
 
@@ -84,6 +93,9 @@ namespace Cake_Shop
                     {
                         eventPassCakeToRemove(id);
                         order.Remove(cake);
+
+                        total -= cake.Item3;
+                        TotalTextBlock.Text = total.ToString();
                         OrderDetail.Items.Refresh();
                         break;
                     }

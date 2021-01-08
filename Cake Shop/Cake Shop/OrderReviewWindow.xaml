@@ -35,6 +35,20 @@
                 <RowDefinition Height="15"/>
             </Grid.RowDefinitions>
 
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Right"
+                        Panel.ZIndex="2"
+                        IsHitTestVisible="False">
+                <TextBlock Text="Tổng tiền: "
+                           Style="{StaticResource TextBlockTitleBold}"/>
+                <TextBlock x:Name="TotalTextBlock" 
+                           Text=" "
+                           Style="{StaticResource TextBlockTitle}"/>
+            </StackPanel>
+            
             <DataGrid x:Name="OrderDetail"
                       AutoGenerateColumns="False"
                       Grid.Row="1"

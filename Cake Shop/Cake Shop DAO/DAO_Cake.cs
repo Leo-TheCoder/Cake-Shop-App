@@ -64,5 +64,15 @@ namespace Cake_Shop_DAO
 
             return result;
         }
+
+        public void UpdateCake(int cakeID, string newName, double newPrice, int newType)
+        {
+            string query = $"update Cake set CakeName = N'{newName}', CakePrice = {newPrice}, CakeTypeID = {newType} where CakeID = {cakeID}";
+            SqlCommand cmd = new SqlCommand(query, _conn);
+
+            _conn.Open();
+            cmd.ExecuteNonQuery();
+            _conn.Close();
+        }
     }
 }

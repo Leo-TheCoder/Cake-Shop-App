@@ -26,8 +26,6 @@ namespace Cake_Shop
         public ViewOrderPage()
         {
             InitializeComponent();
-            this.DataContext = this;
-            OrderList = BUS_CakeOrder.Instance.GetAllOrders();
         }
 
         public List<DTO_CakeOrder> OrderList { get => _orderList; set => _orderList = value; }
@@ -37,6 +35,20 @@ namespace Cake_Shop
             //change item source of grid
             DTO_CakeOrder selectedOrder = (DTO_CakeOrder)DataGridOrders.SelectedItem;
             DataGridSpecificOrder.ItemsSource = selectedOrder.OrderCakeList;
+
+            double total = 0;
+            foreach (var item in selectedOrder.OrderCakeList)
+            {
+                total += item.Item3;
+            }
+            TotalTextBlock.Text = total.ToString();
+        }
+
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            OrderList = BUS_CakeOrder.Instance.GetAllOrders();
+            this.DataContext = this;
         }
     }
 }

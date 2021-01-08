@@ -21,7 +21,11 @@ namespace Cake_Shop
     /// </summary>
     public partial class CakeDetailWindow : Window
     {
-        private int cakeID;
+        private int _cakeID;
+
+        public delegate void RefreshScreen();
+        public event RefreshScreen eventRefreshScreen;
+
         public CakeDetailWindow()
         {
             InitializeComponent();
@@ -30,7 +34,7 @@ namespace Cake_Shop
         public CakeDetailWindow(int id)
         {
             InitializeComponent();
-            cakeID = id;
+            _cakeID = id;
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -40,8 +44,23 @@ namespace Cake_Shop
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            DTO_Cake data = BUS_Cake.Instance.GetCakeByID(cakeID);
+            DTO_Cake data = BUS_Cake.Instance.GetCakeByID(_cakeID);
             this.DataContext = data;
         }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+
+            EditCakeWindow edit = new EditCakeWindow(_cakeID);
+            edit.ShowDialog();
+
+            DTO_Cake data = BUS_Cake.Instance.GetCakeByID(_cakeID);
+            this.DataContext = data;
+            this.ShowDialog();
+
+            eventRefreshScreen();
+        }
+       
     }
 }

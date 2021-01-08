@@ -8,7 +8,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Xem đơn hàng"
-      Background="Transparent">
+      Background="Transparent"
+      Loaded="Page_Loaded">
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -26,6 +27,19 @@
                 <DataGridTextColumn Header="Ngày mua" Width="*" Binding="{Binding OrderDate}"/>
             </DataGrid.Columns>
         </DataGrid>
+
+        <StackPanel Orientation="Horizontal"
+                        Grid.Column="1"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Right"
+                        Panel.ZIndex="2"
+                        IsHitTestVisible="False">
+            <TextBlock Text="Tổng tiền: "
+                           Style="{StaticResource TextBlockTitleBold}"/>
+            <TextBlock x:Name="TotalTextBlock" 
+                           Text="0"
+                           Style="{StaticResource TextBlockTitle}"/>
+        </StackPanel>
 
         <DataGrid Name="DataGridSpecificOrder"
                   Grid.Column="1"

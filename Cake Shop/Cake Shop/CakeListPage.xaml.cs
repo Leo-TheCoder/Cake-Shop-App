@@ -96,7 +96,16 @@ namespace Cake_Shop
 
             //MessageBox.Show($"{cake.CakeName}");
             CakeDetailWindow cakeDetail = new CakeDetailWindow(cake.CakeId);
+            cakeDetail.eventRefreshScreen += CakeDetail_eventRefreshScreen;
             cakeDetail.ShowDialog();
+        }
+
+        private void CakeDetail_eventRefreshScreen()
+        {
+            listAllCake = BUS_Cake.Instance.GetAllCakes();
+            cakeList = new ObservableCollection<DTO_Cake>(listAllCake);
+
+            CakeListView.ItemsSource = cakeList;
         }
 
         private void WatchBasket_Click(object sender, RoutedEventArgs e)
@@ -105,8 +114,15 @@ namespace Cake_Shop
             {
                 OrderReviewWindow review = new OrderReviewWindow(basket);
                 review.eventPassCakeToRemove += Review_eventPassCakeToRemove;
+                review.eventClearBasket += Review_eventClearBasket;
                 review.ShowDialog();
             }
+        }
+
+        private void Review_eventClearBasket()
+        {
+            basket.Clear();
+            AmountBorder.Visibility = Visibility.Collapsed;
         }
 
         private void Review_eventPassCakeToRemove(int id)

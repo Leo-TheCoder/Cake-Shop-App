@@ -46,7 +46,8 @@ namespace Cake_Shop_DAO
         {
             DataTable data = new DataTable();
 
-            string query = "select OrderDetail.CakeID, OrderDetail.CakeAmount, Cake.CakeName, Cake.CakePrice, Cake.CakePrice * OrderDetail.CakeAmount as Total from OrderDetail, Cake"
+            string query = "select OrderDetail.CakeID, OrderDetail.CakeAmount, Cake.CakeName, OrderDetail.CakePrice, Cake.CakePrice * OrderDetail.CakeAmount as Total " +
+                "from OrderDetail, Cake"
                 + $" where OrderDetail.OrderID={orderId} and OrderDetail.CakeID = Cake.CakeID";
 
             SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
@@ -59,9 +60,9 @@ namespace Cake_Shop_DAO
         {
             DataTable data = new DataTable();
 
-            string query = "select MONTH(O.OrderDate) as Month, SUM(C.CakePrice*OD.CakeAmount) as Profit " +
-                            "from CakeOrder O, OrderDetail OD, Cake C " +
-                            "where O.OrderID = OD.OrderID and OD.CakeID = C.CakeID group by MONTH(O.OrderDate)";
+            string query = "select MONTH(O.OrderDate) as Month, SUM(OD.CakePrice*OD.CakeAmount) as Profit " +
+                            "from CakeOrder O, OrderDetail OD" +
+                            "where O.OrderID = OD.OrderID group by MONTH(O.OrderDate)";
 
             SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
             adapter.Fill(data);
@@ -92,9 +93,9 @@ namespace Cake_Shop_DAO
             _conn.Close();
         }
 
-        public void AddOrderDetail(int orderId, int cakeId, int amount)
+        public void AddOrderDetail(int orderId, int cakeId, int amount, double price)
         {
-            string query = $"insert into OrderDetail(OrderID, CakeID, CakeAmount) values({orderId}, {cakeId}, {amount})";
+            string query = $"insert into OrderDetail(OrderID, CakeID, CakeAmount, CakePrice) values({orderId}, {cakeId}, {amount}, {price})";
             SqlCommand cmd = new SqlCommand(query, _conn);
 
             try

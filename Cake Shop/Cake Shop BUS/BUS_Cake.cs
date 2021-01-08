@@ -63,6 +63,11 @@ namespace Cake_Shop_BUS
             return result;
         }
 
+        public void UpdateCake(int cakeID, string newName, double newPrice, int newType)
+        {
+            DAO_Cake.Instance.UpdateCake(cakeID, newName, newPrice, newType);
+        }
+
         public List<DTO_Cake> GetSearchCakeByName(string nameCake)
         {
             List<DTO_Cake> result = new List<DTO_Cake>();
