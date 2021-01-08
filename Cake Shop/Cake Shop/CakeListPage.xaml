@@ -271,10 +271,11 @@
                 </ListView.ItemContainerStyle>
             </ListView>
 
-            <StackPanel Orientation="Horizontal"
+            <StackPanel x:Name="ButtonRow" 
+                        Orientation="Horizontal"
                         Grid.Row="3"
                         Grid.Column="1"
-                        HorizontalAlignment="Right"
+                        HorizontalAlignment="Center"
                         VerticalAlignment="Bottom">
                 <Grid>
                     <Border x:Name="AmountBorder" 
@@ -294,13 +295,14 @@
                                FontSize="8"/>
                     </Border>
                     <Button x:Name="WatchBasket"
-                        Content="Xem đơn hiện tại"
-                        hc:BorderElement.CornerRadius="10" Click="WatchBasket_Click"/>
+                            Content="Xem đơn hiện tại"
+                            hc:BorderElement.CornerRadius="10" 
+                            Click="WatchBasket_Click"
+                            Height="35"
+                            Style="{StaticResource ButtonPrimary}"
+                            Background="Black"/>
                 </Grid>
-                <TextBlock Text=" "/>
-                <Button x:Name="CreateOrder"
-                        Content="Tạo đơn hàng"
-                        hc:BorderElement.CornerRadius="10"/>
+                
             </StackPanel>
         </Grid>
         

@@ -104,8 +104,31 @@ namespace Cake_Shop
             if(basket.Count > 0)
             {
                 OrderReviewWindow review = new OrderReviewWindow(basket);
+                review.eventPassCakeToRemove += Review_eventPassCakeToRemove;
                 review.ShowDialog();
             }
+        }
+
+        private void Review_eventPassCakeToRemove(int id)
+        {
+            foreach (Tuple<int, int> part in basket)
+            {
+                if (part.Item1 == id)
+                {
+                    basket.Remove(part);
+                    break;
+                }
+            }
+
+            if(basket.Count == 0)
+            {
+                AmountBorder.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                Amount.Text = basket.Count().ToString();
+            }
+
         }
     }
 }

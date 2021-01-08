@@ -46,7 +46,6 @@ namespace Cake_Shop_DAO
         {
             DataTable data = new DataTable();
 
-
             string query = "select OrderDetail.CakeID, OrderDetail.CakeAmount, Cake.CakeName, Cake.CakePrice, Cake.CakePrice * OrderDetail.CakeAmount as Total from OrderDetail, Cake"
                 + $" where OrderDetail.OrderID={orderId} and OrderDetail.CakeID = Cake.CakeID";
 
@@ -54,6 +53,46 @@ namespace Cake_Shop_DAO
             adapter.Fill(data);
 
             return data;
+        }
+
+        public DataTable GetAmount()
+        {
+            DataTable data = new DataTable();
+
+            string query = "select count(*) as Amount from CakeOrder";
+
+            SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
+            adapter.Fill(data);
+
+            return data;
+        }
+
+        public void AddOrder(int id)
+        {
+            DateTime today = DateTime.Today;
+            string query = $"insert into CakeOrder(OrderID, OrderDate) values({id}, '{today.Date}')";
+            SqlCommand cmd = new SqlCommand(query, _conn);
+
+            _conn.Open();
+            cmd.ExecuteNonQuery();
+            _conn.Close();
+        }
+
+        public void AddOrderDetail(int orderId, int cakeId, int amount)
+        {
+            string query = $"insert into OrderDetail(OrderID, CakeID, CakeAmount) values({orderId}, {cakeId}, {amount})";
+            SqlCommand cmd = new SqlCommand(query, _conn);
+
+            try
+            {
+                _conn.Open();
+                cmd.ExecuteNonQuery();
+                _conn.Close();
+            }
+            catch
+            {
+
+            }
         }
     }
 }

@@ -63,5 +63,27 @@ namespace Cake_Shop_BUS
 
             return result;
         }
+
+        public void AddOrderDetail(int orderId, int cakeId, int amount)
+        {
+            DAO_CakeOrder.Instance.AddOrderDetail(orderId, cakeId, amount);
+        }
+
+        public void AddOrder(int id)
+        {
+            DAO_CakeOrder.Instance.AddOrder(id);
+        }
+
+        public int GetAmount()
+        {
+            int result;
+
+            DataTable data = DAO_CakeOrder.Instance.GetAmount();
+            DataRow row = data.Rows[0];
+
+            result = int.Parse(row["Amount"].ToString());
+
+            return result;
+        }
     }
 }

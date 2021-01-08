@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Cake_Shop"
         mc:Ignorable="d"
         Title="OrderReviewWindow" 
-        Height="600" Width="550"
+        Height="550" Width="550"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         Background="Transparent" ShowInTaskbar="False"
@@ -41,46 +41,66 @@
                       Grid.Column="1"
                       hc:DataGridAttach.CanUnselectAllWithBlankArea="True">
                 <DataGrid.Background>
-                    <SolidColorBrush Color="White"
-                                     Opacity="0.9"/>
+                    <SolidColorBrush Color="LightGray"
+                                     Opacity="0.7"/>
                 </DataGrid.Background>
-
-                <DataGrid.ColumnHeaderStyle>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="Background" Value="Transparent"/>
-                    </Style>
-                </DataGrid.ColumnHeaderStyle>
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Tên bánh"
-                                        Width="1*"
-                                        Binding="{Binding Item1.CakeName}"/>
-                    <DataGridTextColumn Header="Loại bánh"
-                                        Width="1*"
-                                        Binding="{Binding Item1.CakeNameType}"/>
+                                        Width="1.5*"
+                                        Binding="{Binding Item1.CakeName}"
+                                        IsReadOnly="True"/>
                     <DataGridTextColumn Header="Đơn giá"
                                         Width="1*"
-                                        Binding="{Binding Item1.CakePrice}"/>
+                                        Binding="{Binding Item1.CakePrice}"
+                                        IsReadOnly="True"/>
                     <DataGridTextColumn Header="Số lượng"
                                         Width="1*"
-                                        Binding="{Binding Item2}"/>
+                                        Binding="{Binding Item2}"
+                                        IsReadOnly="True"/>
                     <DataGridTextColumn Header="Thành tiền"
                                         Width="1*"
-                                        Binding="{Binding Item3}"/>
+                                        Binding="{Binding Item3}"
+                                        IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
 
-            <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    Grid.Column="1"
+            <Grid Grid.Column="1"
                     Grid.Row="2">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+
                 <Button x:Name="Cancel"
-                    Content="Đóng"
-                    Style="{StaticResource ButtonDashedDanger}"
-                    hc:BorderElement.CornerRadius="10"
-                    Width="100" Click="Cancel_Click"/>
-            </StackPanel>
+                        Grid.Column="0"
+                        Content="Đóng"
+                        Style="{StaticResource ButtonDashedDanger}"
+                        hc:BorderElement.CornerRadius="10"
+                        Width="100" 
+                        Click="Cancel_Click"/>
+                
+                <Button x:Name="Remove"
+                        Grid.Column="2"
+                        Content="Xóa"
+                        Style="{StaticResource ButtonDanger}"
+                        hc:BorderElement.CornerRadius="10"
+                        Width="100" 
+                        Click="Remove_Click"/>
+                
+                <Button x:Name="Order"
+                        Content="Tạo đơn"
+                        Grid.Column="4"
+                        Style="{StaticResource ButtonPrimary}"
+                        Background="Black"
+                        hc:BorderElement.CornerRadius="10"
+                        Width="100" 
+                        Click="Order_Click"/>
+            </Grid>
 
         </Grid>
     </Border>
