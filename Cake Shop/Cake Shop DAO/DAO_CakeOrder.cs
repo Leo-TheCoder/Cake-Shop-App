@@ -55,6 +55,20 @@ namespace Cake_Shop_DAO
             return data;
         }
 
+        public DataTable GetMonthlyIncome()
+        {
+            DataTable data = new DataTable();
+
+            string query = "select MONTH(O.OrderDate) as Month, SUM(C.CakePrice*OD.CakeAmount) as Profit " +
+                            "from CakeOrder O, OrderDetail OD, Cake C " +
+                            "where O.OrderID = OD.OrderID and OD.CakeID = C.CakeID group by MONTH(O.OrderDate)";
+
+            SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
+            adapter.Fill(data);
+
+            return data;
+        }
+
         public DataTable GetAmount()
         {
             DataTable data = new DataTable();

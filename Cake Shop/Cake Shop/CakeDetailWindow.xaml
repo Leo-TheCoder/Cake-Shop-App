@@ -41,7 +41,8 @@
                 
                 <TextBlock Text="{Binding CakeName}"
                            HorizontalAlignment="Center"
-                           Style="{StaticResource TextBlockTitleBold}"/>
+                           Style="{StaticResource TextBlockTitleBold}"
+                           />
                 <TextBlock Text=" "/>
                 
                 <Image x:Name="CakeAvatar"

@@ -79,6 +79,9 @@ namespace Cake_Shop
         private void StatisticButton_Click(object sender, RoutedEventArgs e)
         {
             Grid.SetColumn(ActiveIndicator, 2);
+
+            StatisticsPage staPage = new StatisticsPage();
+            MainFrame.Navigate(staPage);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

@@ -45,6 +45,23 @@ namespace Cake_Shop_BUS
             return result;
         }
 
+        public List<Tuple<int, double>> GetMonthlyIncome()
+        {
+            List<Tuple<int, double>> result = new List<Tuple<int, double>>();
+            DataTable data = DAO_CakeOrder.Instance.GetMonthlyIncome();
+
+            foreach (DataRow row in data.Rows)
+            {
+                int month = int.Parse(row["Month"].ToString());
+                double profit = double.Parse(row["Profit"].ToString());
+
+                Tuple<int, double> tmpTuple = new Tuple<int, double>(month, profit);
+                result.Add(tmpTuple);
+            }
+
+            return result;
+        }
+
         public List<Tuple<DTO_Cake, int, float>> GetOrderDetails(int orderId)
         {
             List<Tuple<DTO_Cake, int, float>> result = new List<Tuple<DTO_Cake, int, float>>();
