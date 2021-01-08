@@ -1,0 +1,62 @@
+﻿<Window x:Class="Cake_Shop.AddCakeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cake_Shop"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        mc:Ignorable="d"
+        Title="Thêm bánh" Height="460" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+
+        </Grid.RowDefinitions>
+
+        <hc:Gravatar x:Name="AvatarImg" Style="{StaticResource GravatarCircleImg}"
+                     Grid.Row="0"
+                     Margin="10">
+            <Image Source="{Binding CakeAvatar, Mode=TwoWay}"/>
+        </hc:Gravatar>
+
+        <Button Name="Button_AddAvatar"
+                Grid.Row="1"
+                Style="{StaticResource ButtonPrimary}" Margin="10"
+                Content="Thêm hình ảnh"
+                Click="Button_AddAvatar_Click"></Button>
+
+        <Button Name="Button_RemoveAvatar"
+                Grid.Row="1"
+                Style="{DynamicResource ButtonDanger}"
+                Content="Xóa hình ảnh" Click="Button_RemoveAvatar_Click"
+                Visibility="Hidden"/>
+
+        <TextBox x:Name="TextBox_CakeName" Style="{StaticResource TextBoxExtend}"
+                 Grid.Row="2"
+                 hc:InfoElement.Title="Tên bánh" Width="250"
+                 Margin="10"
+                 Text="{Binding CakeName}"></TextBox>
+        <TextBox x:Name="TextBox_CakePrice" Style="{StaticResource TextBoxExtend}"
+                 Grid.Row="3"
+                 hc:InfoElement.Title="Giá tiền" Width="250"
+                 Margin="10"
+                 Text="{Binding CakePrice}"></TextBox>
+        <ComboBox Name="ComboBox_CakeType" 
+                  Grid.Row="4"
+                  DisplayMemberPath="CakeTypeName"
+                  SelectedValuePath="CakeTypeId"
+                  SelectedValue="{Binding CakeType, Mode=OneWayToSource}"
+                  Width="250" Margin="10" 
+                  SelectedIndex="0" hc:InfoElement.Title="Chọn loại bánh" Style="{StaticResource ComboBoxExtend}"/>
+        <Button Name="Button_AddCake"
+                Grid.Row="5"
+                Style="{StaticResource ButtonPrimary}" Margin="10"
+                Content="Thêm bánh"
+                Click="Button_AddCake_Click"></Button>
+    </Grid>
+</Window>

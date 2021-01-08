@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using Cake_Shop_DTO;
 
 namespace Cake_Shop_DAO
 {
@@ -68,6 +69,16 @@ namespace Cake_Shop_DAO
         public void UpdateCake(int cakeID, string newName, double newPrice, int newType)
         {
             string query = $"update Cake set CakeName = N'{newName}', CakePrice = {newPrice}, CakeTypeID = {newType} where CakeID = {cakeID}";
+            SqlCommand cmd = new SqlCommand(query, _conn);
+
+            _conn.Open();
+            cmd.ExecuteNonQuery();
+            _conn.Close();
+        }
+
+        public void AddCake(DTO_Cake cake)
+        {
+            string query = $"insert into Cake(CakeID, CakeName, CakeTypeID, CakePrice, CakeAvatar) values({cake.CakeId}, '{cake.CakeName}', {int.Parse(cake.CakeType)}, {cake.CakePrice}, '{cake.CakeAvatar}')";
             SqlCommand cmd = new SqlCommand(query, _conn);
 
             _conn.Open();

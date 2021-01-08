@@ -88,5 +88,10 @@ namespace Cake_Shop_BUS
 
             return result;
         }
+
+        public void AddCake(DTO_Cake cake)
+        {
+            DAO_Cake.Instance.AddCake(cake);
+        }
     }
 }
