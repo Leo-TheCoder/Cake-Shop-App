@@ -60,9 +60,7 @@ namespace Cake_Shop_DAO
         {
             DataTable data = new DataTable();
 
-            string query = "select MONTH(O.OrderDate) as Month, SUM(OD.CakePrice*OD.CakeAmount) as Profit " +
-                            "from CakeOrder O, OrderDetail OD" +
-                            "where O.OrderID = OD.OrderID group by MONTH(O.OrderDate)";
+            string query = "select MONTH(O.OrderDate) as Month, SUM(OD.CakePrice*OD.CakeAmount) as Profit from CakeOrder O, OrderDetail OD where O.OrderID = OD.OrderID group by MONTH(O.OrderDate)";
 
             SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
             adapter.Fill(data);

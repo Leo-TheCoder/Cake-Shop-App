@@ -44,5 +44,23 @@ namespace Cake_Shop_BUS
 
             return result;
         }
+
+        public List<Tuple<string, int>> GetStatistic()
+        {
+            List<Tuple<string, int>> result = new List<Tuple<string, int>>();
+
+            DataTable data = DAO_CakeType.Instance.GetStatistic();
+
+            foreach (DataRow row in data.Rows)
+            {
+                string typeName = row["CakeTypeName"].ToString();
+                int amount = int.Parse(row["Amount"].ToString());
+
+                Tuple<string, int> tmpTuple = new Tuple<string, int>(typeName, amount);
+                result.Add(tmpTuple);
+            }
+
+            return result;
+        }
     }
 }

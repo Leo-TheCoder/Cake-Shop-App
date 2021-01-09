@@ -24,60 +24,45 @@ namespace Cake_Shop
     /// </summary>
     public partial class StatisticsPage : Page
     {
-        private List<Tuple<int, double>> monthlyIncomeList = new List<Tuple<int, double>>();
-        public SeriesCollection SeriesCollection { get; set; }
-        public string[] Labels { get; set; }
-        public Func<double, string> Formatter { get; set; }
+        private SeriesCollection psc;
+                
         public StatisticsPage()
         {
             InitializeComponent();
+
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            //monthlyIncomeList = BUS_CakeOrder.Instance.GetMonthlyIncome();
+            
 
-            LoadColumnChartData();
+            LoadPieChartData();
         }
 
-        private void LoadColumnChartData()
+        private void LoadPieChartData()
         {
-            //monthlyIncomeCollection = new SeriesCollection();
-            //foreach(var item in monthlyIncomeList)
-            //{
-            //    monthlyIncomeCollection.Add(new ColumnSeries
-            //    {
-            //        Title = item.Item1.ToString(),
-            //        Values = new ChartValues<double> { item.Item2 }
-            //    });
-            //    break;
-            //}
-            //monthlyIncomeCollection[0].Values.Add(48d);
-            //DataContext = this;
+            List<Tuple<string, int>> cakeTypeSta = new List<Tuple<string, int>>();
 
-            SeriesCollection = new SeriesCollection
+            cakeTypeSta = BUS_CakeType.Instance.GetStatistic();
+
+            psc = new SeriesCollection();
+            foreach (var item in cakeTypeSta)
             {
-                new ColumnSeries
+                LiveCharts.Wpf.PieSeries tmpPie = new LiveCharts.Wpf.PieSeries
                 {
-                    Title = "2015",
-                    Values = new ChartValues<double> { 10, 50, 39, 50 }
-                }
-            };
+                    Values = new LiveCharts.ChartValues<int> { item.Item2 },
+                    Title = item.Item1,
+                    DataLabels = true
+                };
+                psc.Add(tmpPie);
+            }
 
-            //adding series will update and animate the chart automatically
-            SeriesCollection.Add(new ColumnSeries
+            CakeTypePieChart.Series.Clear();
+
+            foreach (var piece in psc)
             {
-                Title = "2016",
-                Values = new ChartValues<double> { 11, 56, 42 }
-            });
-
-            //also adding values updates and animates the chart automatically
-            SeriesCollection[1].Values.Add(48d);
-
-            Labels = new[] { "Maria", "Susan", "Charles", "Frida" };
-            Formatter = value => value.ToString("N");
-
-            DataContext = this;
+                CakeTypePieChart.Series.Add(piece);
+            }
         }
     }
 }

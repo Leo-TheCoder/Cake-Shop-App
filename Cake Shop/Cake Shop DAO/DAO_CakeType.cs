@@ -36,5 +36,19 @@ namespace Cake_Shop_DAO
 
             return result;
         }
+
+        public DataTable GetStatistic()
+        {
+            DataTable result = new DataTable();
+
+            string query = "select CT.CakeTypeName, COALESCE(sum(OD.CakeAmount), 0) as Amount " +
+                           "from CakeType CT left join Cake C on C.CakeTypeID = CT.CakeTypeID " +
+                           "left join  OrderDetail OD on OD.CakeID = C.CakeID group by CT.CakeTypeName";
+
+            SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
+            adapter.Fill(result);
+
+            return result;
+        }
     }
 }
