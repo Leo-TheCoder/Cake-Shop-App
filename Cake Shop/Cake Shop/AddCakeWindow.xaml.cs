@@ -25,6 +25,13 @@ namespace Cake_Shop
         private DTO_Cake newCake = new DTO_Cake();
 
         public List<DTO_CakeType> CakeTypeList = BUS_CakeType.Instance.GetAllTypes();
+
+        public AddCakeWindow()
+        {
+            InitializeComponent();
+            this.DataContext = newCake;
+            ComboBox_CakeType.ItemsSource = CakeTypeList;
+        }
         public AddCakeWindow(int cakeId)
         {
             InitializeComponent();
@@ -63,7 +70,21 @@ namespace Cake_Shop
 
         private void Button_AddCake_Click(object sender, RoutedEventArgs e)
         {
-            BUS_Cake.Instance.AddCake(newCake);
+            bool canReturn = true;
+
+            if (String.IsNullOrEmpty(newCake.CakeAvatar) || String.IsNullOrEmpty(newCake.CakeName) || newCake.CakePrice == 0)
+                canReturn = false;
+
+            if (canReturn)
+            {
+                string dir = System.AppDomain.CurrentDomain.BaseDirectory;
+                dir += $@"Images\{newCake.CakeId}\";
+                Utilities.CopyFile(newCake.CakeAvatar, dir);
+                newCake.CakeAvatar = dir;
+                newCake.CakeId = int.Parse(newCake.CakePrice.ToString());
+                BUS_Cake.Instance.AddCake(newCake);
+                this.Close();
+            }
         }
     }
 }
